@@ -1,9 +1,8 @@
 export default class Field {
-    constructor(name, value, validation, placeholder) {
+    constructor(name, value, validation) {
         this.name = name;
         this.initialValue = value;
         this.value = value;
-        this.placeholder = placeholder;
         this.validation = {
             required: validation && !!validation.required,
             length: validation && !isNaN(validation.length) ? validation.length : 0,

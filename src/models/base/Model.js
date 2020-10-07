@@ -6,21 +6,21 @@ export default class Model {
         this.valid = false;
     }
 
-    addField({name, value, validation, placeholder, mask}) {
-        this.fields[name] = new Field(name, value, validation, placeholder, mask);
+    addField({name, value, validation}) {
+        this.fields[name] = new Field(name, value, validation);
     }
 
     get hasChanged() {
-        const keys = Object.keys(this.fields);
-        let key;
-        for (let k in keys) {
-            key = keys[k];
-            if (this.fields.hasOwnProperty(key)) {
-                if (this.fields[key].hasChanged) {
-                    return true;
-                }
-            }
-        }
+        // const keys = Object.keys(this.fields);
+        // let key;
+        // for (let k in keys) {
+        //     key = keys[k];
+        //     if (this.fields.hasOwnProperty(key)) {
+        //         if (this.fields[key].hasChanged) {
+        //             return true;
+        //         }
+        //     }
+        // }
         return false;
     }
 
