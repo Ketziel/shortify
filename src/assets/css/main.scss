@@ -1,0 +1,36 @@
+
+/* ==========================================================================
+    Base Styles
+============================================================================= */
+
+html {
+    background: #88AB81;
+
+    body {
+        font-family: 'Oswald', sans-serif;
+        margin: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Lobster', cursive;
+        color: #44252A;
+    }
+
+    h1 {
+        font-size: 4rem;
+    }
+}
+
+
+/* ==========================================================================
+    Base Styles
+============================================================================= */
+
+.button {
+    display: inline-block;
+    background: #44252A;
+    color: #fff;
+    text-decoration: none;
+    padding: .5rem 1.5rem;
+    border-radius: .25rem;
+}
