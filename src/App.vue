@@ -96,6 +96,7 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "./assets/css/variables.scss";
   @import "./assets/css/main.scss";
   @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oswald&display=swap');
 
@@ -114,7 +115,7 @@ export default {
 
       h1 {
         margin: 0;
-        text-shadow: .25rem .25rem 0 var(--colour-tertiary), -.25rem -.25rem 0 var(--colour-tertiary);
+        text-shadow: .25rem .25rem 0 $colour-tertiary, -.25rem -.25rem 0 $colour-tertiary;
       }
     }
   

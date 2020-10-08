@@ -80,19 +80,20 @@
 </script>
 
 <style lang="scss">
+    @import "../assets/css/variables.scss";
     
     .shortify-input {
         position: relative;
         display: flex;
-        background-color: var(--colour-tertiary);
+        background-color: $colour-tertiary;
         border-radius: .25rem;
 
         input {
             padding: .5rem .5rem; 
             box-sizing: border-box; 
             border: 1px solid #808080; 
-            color: var(--colour-mono-dark); width: 100%; 
-            background-color: var(--colour-mono-light);
+            color: $colour-mono-dark; width: 100%; 
+            background-color: $colour-mono-light;
             border-radius: .25rem;
             font-size: 1rem;
             font-family: 'Oswald', sans-serif;
@@ -147,11 +148,11 @@
     }
 
     .error {
-        background-color: var(--colour-mono-light);
+        background-color: $colour-mono-light;
         padding: .25rem .5rem;
         font-size: .8rem;
-        border: 1px solid var(--colour-error);
-        color: var(--colour-error);
+        border: 1px solid $colour-error;
+        color: $colour-error;
 
         transition: .25s;
         overflow: hidden;

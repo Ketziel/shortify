@@ -47,9 +47,10 @@
 </script>
 
 <style lang="scss">
+    @import "../assets/css/variables.scss";
     
     .alert {
-        background-color: var(--colour-tertiary); 
+        background-color: $colour-tertiary; 
         border: 1px solid #808080; 
         padding: 1rem; 
         width: 90vw; 

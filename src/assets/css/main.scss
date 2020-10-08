@@ -47,15 +47,6 @@
 
 
 
-    // --colour-primary: #d5b9b2;
-    
-    // --colour-secondary: #6d2e46;
-    // --colour-secondary-light: transparent;
-    // --colour-secondary-dark: #a26769;
-    
-    // --colour-tertiary: #ece2d0;
-    // --colour-mono-light: #f4f1de;
-    // --colour-mono-dark: #50514f;
 
 
 
@@ -105,38 +96,47 @@
 
     
     
-    --colour-primary: #5b8e7d;
+    // --colour-primary: #5b8e7d;
     
-    --colour-secondary: #bc4b51;
-    --colour-secondary-light: transparent;
-    --colour-secondary-dark: #f4e285;
+    // --colour-secondary: #bc4b51;
+    // --colour-secondary-light: transparent;
+    // --colour-secondary-dark: #f4e285;
     
-    --colour-tertiary: #f4a259;
+    // --colour-tertiary: #f4a259;
     
-    --colour-mono-light: #f4f1de;
-    --colour-mono-dark: #50514f;
+    // --colour-mono-light: #f4f1de;
+    // --colour-mono-dark: #50514f;
     
 }
 
-$colour-primary: #5b8e7d;
+
+$colour-primary: #d5b9b2;   
+$colour-secondary: #6d2e46;
+$colour-tertiary: #ece2d0;
+$colour-highlight: #a26769;
+
+$colour-mono-light: #f4f1de;
+$colour-mono-dark: #50514f;
+
+$colour-error: #8b0000;
+
 
 /* ==========================================================================
     Base Styles
 ============================================================================= */
 
 html {
-    background: var(--colour-primary);
     background: $colour-primary;
 
     body {
         font-family: 'Oswald', sans-serif;
         margin: 0;
-        color: var(--colour-mono-dark);
+        color: $colour-mono-dark;
     }
 
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Lobster', cursive;
-        color: var(--colour-secondary);
+        color: $colour-secondary;
     }
 
     h1 {
@@ -175,8 +175,8 @@ html.fetching {
 .button {
     display: inline-block;
     position: relative;
-    background: var(--colour-secondary);
-    color: var(--colour-mono-light);
+    background: $colour-secondary;
+    color: $colour-mono-light;
     text-align: center;
     text-decoration: none;
     padding: .5rem 1.5rem;
@@ -184,11 +184,11 @@ html.fetching {
     user-select: none;
     
     transition: .25s;
-    box-shadow: inset 0em 0 0 0 var(--colour-secondary-dark), inset 0em 0 0 0 var(--colour-secondary-dark);
+    box-shadow: inset 0em 0 0 0 $colour-highlight, inset 0em 0 0 0 $colour-highlight;
 
     span {
-        transition: .25s;
-        text-shadow: 0rem 0rem 0 #ECD18E, 0rem 0rem 0 #ECD18E;
+        // transition: .25s;
+        // text-shadow: 0rem 0rem 0 #ECD18E, 0rem 0rem 0 #ECD18E;
     }
 }
 .button.disabled {
@@ -196,9 +196,9 @@ html.fetching {
     pointer-events: none;
 }
 .button:hover, .button:focus {
-    box-shadow: inset -3.5em 0 0 0 var(--colour-secondary-dark), inset 3.5em 0 0 0 var(--colour-secondary-dark);
+    box-shadow: inset -3.5em 0 0 0 $colour-highlight, inset 3.5em 0 0 0 $colour-highlight;
 
     span {
-        text-shadow: 0.25rem 0.25rem 0 var(--colour-secondary-light), -0.25rem -0.25rem 0 var(--colour-secondary-light);
+        //text-shadow: 0.25rem 0.25rem 0 var(--colour-secondary-light), -0.25rem -0.25rem 0 var(--colour-secondary-light);
     }
 }

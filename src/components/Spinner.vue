@@ -20,6 +20,7 @@
 </script>
 
 <style lang="scss">
+  @import "../assets/css/variables.scss";
 
     .spinner {
       width: 5em; 
@@ -30,7 +31,7 @@
           height: 100%; width: 100%;
 
           div {
-            background-color: var(--colour-mono-light); 
+            background-color: $colour-mono-light; 
             width: 0em; height: 0em; 
             border-radius: 1em; 
             position: absolute; 

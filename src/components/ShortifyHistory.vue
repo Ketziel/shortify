@@ -21,9 +21,10 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "../assets/css/variables.scss";
     
     .history {
-        background-color: var(--colour-mono-light);
+        background-color: $colour-mono-light;
         border-radius: .25rem;
         padding: 0 1rem;
         margin-top: 2rem;
