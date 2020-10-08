@@ -5,8 +5,11 @@
         <h1>Shortify</h1>
         <p>Enter a long url below, and click the button to shorten it. Easy!</p>
       </section>
-      <section class="shortify">
-        <InputFieldShortifyUrl placeholder="Paste a URL" :field="this.shortifyFormModel.fields.url" :shortified="shortified" v-on:onButtonClick="genShortUrl" v-on:onChange="resetErrors"/>
+      <section>
+        <InputFieldShortifyUrl placeholder="Paste a URL" :field="this.shortifyFormModel.fields.url" :shortified="shortified" v-on:onButtonClick="genShortUrl" v-on:onChange="resetErrors" v-on:onEdit="resetShortified"/>
+      </section>
+      <section>
+        <ShortifyHistory />
       </section>
     </div>
     <ErrorAlert />
@@ -17,12 +20,14 @@
 import {getShortUrl} from "./api/api.shrtco.de.js"
 
 import InputFieldShortifyUrl from './components/InputFieldShortifyUrl.vue'
+import ShortifyHistory from './components/ShortifyHistory.vue'
 import ErrorAlert from './components/ErrorAlert.vue'
 
 export default {
   name: 'App',
   components: {
     InputFieldShortifyUrl,
+    ShortifyHistory,
     ErrorAlert
   },
   data() {
@@ -33,7 +38,7 @@ export default {
   computed: {
     shortifyFormModel() {
         return this.$store.state.shortify.shortifyFormModel;
-    },
+    }
   },
   async created() {
     this.$store.dispatch('createShortifyFormModel');
@@ -45,7 +50,9 @@ export default {
         .then((response) => response.json())
           .then((json) => {
             if (json.ok) {
-              this.$store.dispatch('updateShortifyFormModel', {fieldName: 'url', value: json.result.full_short_link});
+              const result = json.result;
+              this.$store.dispatch('updateShortifyFormModel', {fieldName: 'url', value: result.full_short_link});
+              this.$store.dispatch('addToHistory', result);
               this.shortified = true;
             } else {
               this.$store.dispatch('alert', json.error);
@@ -58,6 +65,8 @@ export default {
     },
     resetErrors() {
       this.shortifyFormModel.clearErrors();
+    },
+    resetShortified() {
       this.shortified = false;
     }
   }

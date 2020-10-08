@@ -1,5 +1,5 @@
 <template>
-    <div class="alert drop-shadow" :class="{show : message}">
+    <div class="alert" :class="{show : message}">
         <div class="text">{{messageDisplay}}</div>
     </div>
 </template>
@@ -46,7 +46,7 @@
     };
 </script>
 
-<style scoped>
+<style lang="scss">
     
     .alert {
         background-color: #ECD18E; 

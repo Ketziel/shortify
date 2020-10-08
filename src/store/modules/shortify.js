@@ -2,7 +2,8 @@ import ShortifyModel from '../../models/ShortifyModel';
 
 export default {
     state: {
-        shortifyFormModel: null
+        shortifyFormModel: null,
+        shortifyHistory: []
     },
     mutations: {
         setShortifyFormModel: (state, model) => {
@@ -10,6 +11,9 @@ export default {
         },
         setShortifyFormModelFieldValue: (state, {fieldName, value}) => {
             state.shortifyFormModel.fields[fieldName].value = value;
+        },
+        pushToHistory: (state, entry) => {
+            state.shortifyHistory.unshift(entry);
         }
     },
     actions: {
@@ -18,6 +22,9 @@ export default {
         },
         updateShortifyFormModel: ({commit}, {fieldName, value}) => {
             commit('setShortifyFormModelFieldValue', {fieldName: fieldName, value: value});
+        },
+        addToHistory: ({commit}, entry) => {
+            commit('pushToHistory', entry);
         }
     },
 };
