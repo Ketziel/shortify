@@ -7,11 +7,18 @@ export default {
     mutations: {
         setShortifyFormModel: (state, model) => {
             state.shortifyFormModel = model;
+        },
+        setShortifyFormModelFieldValue: (state, {fieldName, value}) => {
+            state.shortifyFormModel.fields[fieldName].value = value;
         }
     },
     actions: {
         createShortifyFormModel: ({commit}) => {
             commit('setShortifyFormModel', new ShortifyModel());
+        },
+        updateShortifyFormModel: ({commit}, {fieldName, value}) => {
+            console.log(fieldName);
+            commit('setShortifyFormModelFieldValue', {fieldName: fieldName, value: value});
         }
     },
 };
