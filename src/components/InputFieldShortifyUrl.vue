@@ -129,6 +129,7 @@
         .copy-effect {
             position: absolute;
             top: .5rem; left: .5rem;
+            pointer-events: none;
             opacity: 0;
         }
         .copy-effect.show {

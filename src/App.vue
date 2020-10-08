@@ -73,7 +73,9 @@ export default {
       this.shortifyFormModel.clearErrors();
     },
     resetShortified() {
-      this.shortified = false;
+      if (!this.shortifyFormModel.fields.url.value.includes('shrtco.de')) {
+        this.shortified = false;
+      }
     }
   },
   watch: {
@@ -117,10 +119,6 @@ export default {
       }
     }
   
-    section.shortify {
-      
-      //background-color: #ECD18E;
-    }
   }
 
 </style>
