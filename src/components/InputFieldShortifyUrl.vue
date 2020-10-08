@@ -1,7 +1,8 @@
 <template>
     <div class="input-wrap">
         <div class="shortify-input">
-            <input :id="field.name" type="textbox" :attr="inputProps" v-model="field.value" :placeholder="placeholder" @change="this.change" @focus="this.focus" v-on:keyup.enter="button" ref="input" />
+            <div class="copy-effect" :class="{show: copying}">{{field.value}}</div>
+            <input :id="field.name" type="textbox" :attr="inputProps" v-model="field.value" :placeholder="placeholder" @change="this.change" @focus="this.focus" v-on:keyup.enter="button"  v-on:keyup="edit" ref="input" />
             <a href="" class="button" @click.prevent="button" :class="{disabled: false}">
                 <span :class="{show: !shortified}">Shortify!</span>
                 <span :class="{show: shortified}">Copy</span>
@@ -20,6 +21,12 @@
             'inputProps',
             'shortified'
         ],
+        data() {
+            return {
+                copying: false,
+                copyingTimeout: null
+            };
+        },
         methods: {
             change() {
                 this.$emit('onChange', this.field);
@@ -28,10 +35,11 @@
                 this.$emit('onButtonClick', this.field);
                 if (this.shortified) {
                     //If shortified, copy URL to clipboard.
-                    this.selectInputText();
-                    document.execCommand("copy");
-                    this.$store.dispatch('alert', 'URL copied to clipboard');
+                    this.copyText();
                 }
+            },
+            edit() {
+                this.$emit('onEdit', this.field);
             },
             focus() {
                 this.$emit('onFocus', this.field);
@@ -39,6 +47,22 @@
                     //If shortified, auto select url on focus.
                     this.selectInputText();
                 }
+            },
+            copyText() {
+                this.selectInputText();
+                document.execCommand("copy");
+                this.$store.dispatch('alert', 'URL copied to clipboard');
+                
+                // Copy Animation
+                if(this.timeout) {
+                    clearTimeout(this.copyingTimeout);
+                    this.copyingTimeout = null;
+                    this.copying = false;
+                }
+                this.copying = true;
+                this.copyingTimeout = setTimeout(() => {
+                    this.copying = false;
+                }, 500);
             },
             selectInputText() {
                 this.$refs.input.select();
@@ -50,6 +74,7 @@
 <style lang="scss">
     
     .shortify-input {
+        position: relative;
         display: flex;
         background-color: #ECD18E;
         border-radius: .25rem;
@@ -64,6 +89,7 @@
             font-size: 1rem;
             font-family: 'Oswald', sans-serif;
         }
+
         .button {
             margin-left: 0;
             min-width: 3rem;
@@ -78,6 +104,20 @@
                 opacity: 1;
             }
         }
+
+        .copy-effect {
+            position: absolute;
+            top: .5rem; left: .5rem;
+            opacity: 0;
+        }
+        .copy-effect.show {
+            animation: fade-up .5s linear;
+        }
+    }
+
+    @keyframes fade-up {
+        0%   {opacity: 1; top: .5rem;}
+        100% {opacity: 0; top: -2rem;}
     }
 
     .shortify-input > *{
