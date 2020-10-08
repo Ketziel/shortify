@@ -49,7 +49,7 @@
 <style lang="scss">
     
     .alert {
-        background-color: #ECD18E; 
+        background-color: var(--colour-tertiary); 
         border: 1px solid #808080; 
         padding: 1rem; 
         width: 90vw; 

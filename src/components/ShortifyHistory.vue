@@ -23,11 +23,11 @@
 <style lang="scss" scoped>
     
     .history {
-        background-color: #fff;
+        background-color: var(--colour-mono-light);
         border-radius: .25rem;
         padding: 0 1rem;
         margin-top: 2rem;
-        
+
         /deep/ .item + .item {
             border-top: solid 1px #000;
         }

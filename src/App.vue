@@ -109,7 +109,6 @@ export default {
     }
 
     section.title {
-      background-color: var(--colour-primary);
       padding: 2rem;
       text-align: center;
 

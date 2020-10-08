@@ -84,7 +84,7 @@
     .shortify-input {
         position: relative;
         display: flex;
-        background-color: #ECD18E;
+        background-color: var(--colour-tertiary);
         border-radius: .25rem;
 
         input {
