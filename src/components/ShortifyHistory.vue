@@ -27,11 +27,12 @@
         border-radius: .25rem;
         padding: 0 1rem;
         margin-top: 2rem;
+        
+        /deep/ .item + .item {
+            border-top: solid 1px #000;
+        }
     }
 
-    .history /deep/ .item + .item {
-        border-top: solid 1px #000;
-    }
 
 
 

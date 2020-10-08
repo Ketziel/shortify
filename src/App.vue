@@ -6,7 +6,7 @@
         <p>Enter a long url below, and click the button to shorten it. Easy!</p>
       </section>
       <section>
-        <InputFieldShortifyUrl placeholder="Paste a URL" :field="this.shortifyFormModel.fields.url" :shortified="shortified" v-on:onButtonClick="genShortUrl" v-on:onChange="resetErrors" v-on:onEdit="resetShortified"/>
+        <InputFieldShortifyUrl placeholder="Paste a URL" :field="this.shortifyFormModel.fields.url" :shortified="shortified" :fetching="fetching" v-on:onButtonClick="genShortUrl" v-on:onChange="resetErrors" v-on:onEdit="resetShortified"/>
       </section>
       <section>
         <ShortifyHistory />
@@ -38,6 +38,9 @@ export default {
   computed: {
     shortifyFormModel() {
         return this.$store.state.shortify.shortifyFormModel;
+    },
+    fetching() {
+        return this.$store.state.activity.fetching;
     }
   },
   async created() {
@@ -46,6 +49,7 @@ export default {
   methods: {
     genShortUrl(){
       if (!this.shortified && this.shortifyFormModel.validate()) {
+        this.$store.dispatch('startFetch');
         getShortUrl(this.shortifyFormModel.fields.url.value)
         .then((response) => response.json())
           .then((json) => {
@@ -57,9 +61,11 @@ export default {
             } else {
               this.$store.dispatch('alert', json.error);
             }
+            this.$store.dispatch('endFetch');
           })
           .catch((error) => {
             this.$store.dispatch('alert', error);
+            this.$store.dispatch('endFetch');
           });
       }
     },
@@ -69,8 +75,22 @@ export default {
     resetShortified() {
       this.shortified = false;
     }
+  },
+  watch: {
+    fetching() {
+      let html = document.getElementsByTagName('html')[0];
+      if (this.fetching) {
+        html.classList.add('fetching');
+      } else {
+        html.classList.remove('fetching');
+      }
+    }
   }
 }
+
+
+
+
 </script>
 
 <style lang="scss">
@@ -83,7 +103,7 @@ export default {
     .content-wrapper {
       width: 40rem;
       max-width: 80vw;
-      margin: auto;
+      margin: 4rem auto;
     }
 
     section.title {

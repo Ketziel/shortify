@@ -1,11 +1,13 @@
 <template>
     <div class="input-wrap">
+        
         <div class="shortify-input">
             <div class="copy-effect" :class="{show: copying}">{{field.value}}</div>
-            <input :id="field.name" type="textbox" :attr="inputProps" v-model="field.value" :placeholder="placeholder" @change="this.change" @focus="this.focus" v-on:keyup.enter="button"  v-on:keyup="edit" ref="input" />
-            <a href="" class="button" @click.prevent="button" :class="{disabled: false}">
-                <span :class="{show: !shortified}">Shortify!</span>
-                <span :class="{show: shortified}">Copy</span>
+            <input :id="field.name" type="textbox" :attr="inputProps" :disabled="fetching" v-model="field.value" :placeholder="placeholder" @change="this.change" @focus="this.focus" v-on:keyup.enter="button"  v-on:keyup="edit" ref="input" />
+            <a href="" class="button" @click.prevent="button" :class="{disabled: fetching}">
+                <span :class="{show: !shortified && !fetching}">Shortify!</span>
+                <span class="spinner-wrap" :class="{show: fetching}"><Spinner/></span>
+                <span :class="{show: shortified && !fetching}">Copy</span>
             </a>
         </div>
         <div class="error" :class="{show: field.validation.error}">{{field.validation.error}}</div>
@@ -13,13 +15,19 @@
 </template>
 
 <script>
+    import Spinner from './Spinner.vue'
+
     export default {
         name: 'InputFieldShortifyUrl',
+        components: {
+            Spinner
+        },
         props: [
             'field',
             'placeholder',
             'inputProps',
-            'shortified'
+            'shortified',
+            'fetching'
         ],
         data() {
             return {
@@ -52,7 +60,7 @@
                 this.selectInputText();
                 document.execCommand("copy");
                 this.$store.dispatch('alert', 'URL copied to clipboard');
-                
+
                 // Copy Animation
                 if(this.timeout) {
                     clearTimeout(this.copyingTimeout);
@@ -89,6 +97,9 @@
             font-size: 1rem;
             font-family: 'Oswald', sans-serif;
         }
+        input:disabled {
+            pointer-events: none;
+        }
 
         .button {
             margin-left: 0;
@@ -98,10 +109,20 @@
                 position: absolute;
                 left: 0; right: 0;
                 transition: .25s;
-                opacity: 0;;
+                opacity: 0;
+                transform: scale(0);
             }
             span.show {
                 opacity: 1;
+                transform: scale(1);
+            }
+
+            .spinner-wrap {
+
+                /deep/ .spinner {
+                    font-size: .3rem;
+                    display: inline-block;
+                }
             }
         }
 
