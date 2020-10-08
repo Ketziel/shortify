@@ -8,7 +8,12 @@ export default class ShortifyModel extends Model {
             name: 'url',
             value: url || '',
             validation: {
-                required: true
+                required: true,
+                regex: /[...]*\.[...]*/
+            },
+            errorMsgOverride: {
+                required: 'You need to enter a URL first!',
+                regex: 'Sorry, this doesn\'t look like a valid URL'
             }
         });
 

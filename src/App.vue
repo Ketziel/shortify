@@ -6,9 +6,10 @@
         <p>Enter a long url below, and click the button to shorten it. Easy!</p>
       </section>
       <section class="shortify">
-        <InputFieldShortifyUrl placeholder="Paste a URL" :field="this.shortifyFormModel.fields.url" v-on:onButtonClick="genShortUrl"/>
+        <InputFieldShortifyUrl placeholder="Paste a URL" :field="this.shortifyFormModel.fields.url" :shortified="shortified" v-on:onButtonClick="genShortUrl" v-on:onChange="resetErrors"/>
       </section>
     </div>
+    <ErrorAlert />
   </div>
 </template>
 
@@ -16,15 +17,17 @@
 import {getShortUrl} from "./api/api.shrtco.de.js"
 
 import InputFieldShortifyUrl from './components/InputFieldShortifyUrl.vue'
+import ErrorAlert from './components/ErrorAlert.vue'
 
 export default {
   name: 'App',
   components: {
-    InputFieldShortifyUrl
+    InputFieldShortifyUrl,
+    ErrorAlert
   },
   data() {
       return {
-          test: 'NOT FETCHED YET'
+          shortified: false
       };
   },
   computed: {
@@ -33,30 +36,29 @@ export default {
     },
   },
   async created() {
-
     this.$store.dispatch('createShortifyFormModel');
-
-    // await getShortUrl('https://github.com/Ketziel/shortify')
-    // .then((response) => response.json())
-    //   .then((json) => {
-    //     this.test = json.result.full_short_link;
-    //   })
-    // .catch((error) => {
-    //     console.log(error);
-    // });
   },
   methods: {
     genShortUrl(){
-      if (this.shortifyFormModel.validate()) {
+      if (!this.shortified && this.shortifyFormModel.validate()) {
         getShortUrl(this.shortifyFormModel.fields.url.value)
         .then((response) => response.json())
           .then((json) => {
-            this.$store.dispatch('updateShortifyFormModel', {fieldName: 'url', value: json.result.full_short_link});
+            if (json.ok) {
+              this.$store.dispatch('updateShortifyFormModel', {fieldName: 'url', value: json.result.full_short_link});
+              this.shortified = true;
+            } else {
+              this.$store.dispatch('alert', json.error);
+            }
           })
-        .catch((error) => {
-            console.log(error);
-        });
+          .catch((error) => {
+            this.$store.dispatch('alert', error);
+          });
       }
+    },
+    resetErrors() {
+      this.shortifyFormModel.clearErrors();
+      this.shortified = false;
     }
   }
 }
@@ -67,7 +69,7 @@ export default {
   @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oswald&display=swap');
 
   #app {
-    margin-top: 20vh;
+    margin: 20vh 0 6rem;
 
     .content-wrapper {
       width: 40rem;
@@ -82,6 +84,7 @@ export default {
 
       h1 {
         margin: 0;
+        text-shadow: .25rem .25rem 0 #ECD18E, -.25rem -.25rem 0 #ECD18E;
       }
     }
   

@@ -6,8 +6,8 @@ export default class Model {
         this.valid = false;
     }
 
-    addField({name, value, validation}) {
-        this.fields[name] = new Field(name, value, validation);
+    addField({name, value, validation, errorMsgOverride}) {
+        this.fields[name] = new Field(name, value, validation, errorMsgOverride);
     }
 
     get hasChanged() {
@@ -47,5 +47,16 @@ export default class Model {
 
         this.valid = valid;
         return valid;
+    }
+
+    clearErrors() {
+        const keys = Object.keys(this.fields);
+        
+        let key;
+        for (let k = 0; k < keys.length; k++) {
+            key = keys[k];
+            this.fields[key].validation.error = null;
+            
+        }
     }
 }

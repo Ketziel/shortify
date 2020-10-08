@@ -17,7 +17,6 @@ export default {
             commit('setShortifyFormModel', new ShortifyModel());
         },
         updateShortifyFormModel: ({commit}, {fieldName, value}) => {
-            console.log(fieldName);
             commit('setShortifyFormModelFieldValue', {fieldName: fieldName, value: value});
         }
     },

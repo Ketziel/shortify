@@ -1,5 +1,5 @@
 export default class Field {
-    constructor(name, value, validation) {
+    constructor(name, value, validation, errorMsgOverride) {
         this.name = name;
         this.initialValue = value;
         this.value = value;
@@ -12,6 +12,7 @@ export default class Field {
             regex: validation && validation.regex ? validation.regex : null,
             error: null
         };
+        this.errorMsgOverride = errorMsgOverride;
     }
 
     get hasChanged() {
@@ -21,12 +22,12 @@ export default class Field {
     validate() {
         this.validation.error = null;
         if (this.validation.required && (!this.value && this.value !== false)) {
-            this.validation.error = `This field is required`;
+            this.validation.error = this.errorMsgOverride.required || `This field is required`;
             return false;
         }
 
         if (this.validation.length && this.value && this.value.length && this.value.length !== this.validation.length) {
-            this.validation.error = `This field must be ${this.validation.length} characters`;
+            this.validation.error = this.errorMsgOverride.length || `This field must be ${this.validation.length} characters`;
             return false;
         }
 
@@ -34,7 +35,7 @@ export default class Field {
             const regex = new RegExp(this.validation.regex);
             if (!regex.test(this.value)) {
                 const fieldLabel = (this.name.charAt(0).toUpperCase() + this.name.slice(1)).match(/[A-Z]+[^A-Z]*|[^A-Z]+/g).join(' ');
-                this.validation.error = `${fieldLabel} format incorrect`;
+                this.validation.error = this.errorMsgOverride.regex || `${fieldLabel} format incorrect`;
                 return false;
             }
         }

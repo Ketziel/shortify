@@ -19,6 +19,10 @@ html {
     h1 {
         font-size: 4rem;
     }
+
+    p {
+        font-size: 1.1rem;
+    }
 }
 
 
@@ -28,8 +32,10 @@ html {
 
 .button {
     display: inline-block;
+    position: relative;
     background: #44252A;
     color: #fff;
+    text-align: center;
     text-decoration: none;
     padding: .5rem 1.5rem;
     border-radius: .25rem;
