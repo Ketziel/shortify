@@ -30,7 +30,7 @@
           height: 100%; width: 100%;
 
           div {
-            background-color: rgba(255, 255, 255, 0.75); 
+            background-color: var(--colour-mono-light); 
             width: 0em; height: 0em; 
             border-radius: 1em; 
             position: absolute; 

@@ -91,8 +91,8 @@
             padding: .5rem .5rem; 
             box-sizing: border-box; 
             border: 1px solid #808080; 
-            color: #000; width: 100%; 
-            background-color: #fff;
+            color: var(--colour-mono-dark); width: 100%; 
+            background-color: var(--colour-mono-light);
             border-radius: .25rem;
             font-size: 1rem;
             font-family: 'Oswald', sans-serif;
@@ -147,11 +147,11 @@
     }
 
     .error {
-        background-color: #fff;
+        background-color: var(--colour-mono-light);
         padding: .25rem .5rem;
         font-size: .8rem;
-        border: 1px solid #dc1e1e;
-        color: #dc1e1e;
+        border: 1px solid var(--colour-error);
+        color: var(--colour-error);
 
         transition: .25s;
         overflow: hidden;

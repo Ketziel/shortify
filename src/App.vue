@@ -109,13 +109,13 @@ export default {
     }
 
     section.title {
-      background-color: #88AB81;
+      background-color: var(--colour-primary);
       padding: 2rem;
       text-align: center;
 
       h1 {
         margin: 0;
-        text-shadow: .25rem .25rem 0 #ECD18E, -.25rem -.25rem 0 #ECD18E;
+        text-shadow: .25rem .25rem 0 #ECD18E, -.25rem -.25rem 0 var(--colour-tertiary);
       }
     }
   

@@ -1,10 +1,34 @@
 
 /* ==========================================================================
+    Colours
+============================================================================= */
+
+:root {
+    --colour-primary: rgb(136,171,129);
+    --colour-primary-light: rgb(154, 197, 148);
+    --colour-primary-dark: rgb(116, 150, 112);
+    
+    --colour-secondary: rgb(68,37,42);
+    --colour-secondary-light: rgb(97, 53, 61);
+    --colour-secondary-dark: rgb(43, 23, 26);
+    
+    --colour-tertiary: rgb(236,209,142);
+    --colour-tertiary-light: rgb(255, 226, 154);
+    --colour-tertiary-dark: rgb(209, 179, 124);
+
+    --colour-mono-dark: rgb(53,54,56);
+    --colour-mono-light: rgb(240,238,238);
+
+    --colour-error: rgb(220,30,30);
+}
+
+
+/* ==========================================================================
     Base Styles
 ============================================================================= */
 
 html {
-    background: #88AB81;
+    background: var(--colour-primary);
 
     body {
         font-family: 'Oswald', sans-serif;
@@ -13,7 +37,7 @@ html {
 
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Lobster', cursive;
-        color: #44252A;
+        color: var(--colour-secondary);
     }
 
     h1 {
@@ -52,15 +76,30 @@ html.fetching {
 .button {
     display: inline-block;
     position: relative;
-    background: #44252A;
-    color: #fff;
+    background: var(--colour-secondary);
+    color: var(--colour-mono-light);
     text-align: center;
     text-decoration: none;
     padding: .5rem 1.5rem;
     border-radius: .25rem;
     user-select: none;
+    
+    transition: .25s;
+    box-shadow: inset 0em 0 0 0 var(--colour-secondary-dark), inset 0em 0 0 0 var(--colour-secondary-dark);
+
+    span {
+        transition: .25s;
+        text-shadow: 0rem 0rem 0 #ECD18E, 0rem 0rem 0 #ECD18E;
+    }
 }
 .button.disabled {
     opacity: .75;
     pointer-events: none;
+}
+.button:hover, .button:focus {
+    box-shadow: inset -3.5em 0 0 0 var(--colour-secondary-dark), inset 3.5em 0 0 0 var(--colour-secondary-dark);
+
+    span {
+        text-shadow: 0.25rem 0.25rem 0 var(--colour-secondary-light), -0.25rem -0.25rem 0 var(--colour-secondary-light);
+    }
 }
