@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: 'ErrorAlert',
+        name: 'Alert',
         components: {},
         data: function() {
             return {

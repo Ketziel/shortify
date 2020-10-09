@@ -1,8 +1,14 @@
 <template>
 <transition name="fade">
     <div class="item">
-        <div class="short">{{shortUrl}}</div>
-        <div class="original">{{originalUrl}}</div>
+        <div>
+            <div class="copy-effect" :class="{show: copying}">{{entry.short_link}}</div>
+            <a :href="entry.full_short_link" target="_blank" class="short">{{entry.short_link}}</a>
+            <a :href="entry.original_link" target="_blank" class="original">{{entry.original_link}}</a>
+        </div>
+        <div>
+            <a href="" class="button hollow" @click.prevent="copyText">Copy</a>
+        </div>
     </div>
 </transition>
 </template>
@@ -11,14 +17,43 @@
     export default {
         name: 'ShortifyHistoryItem',
         props: [
-            'originalUrl',
-            'shortUrl'
+            'entry'
         ],
+        data() {
+            return {
+                copying: false,
+                copyingTimeout: null
+            };
+        },
         computed: {
             shortifyFormModel() {
                 return this.$store.state.shortify.shortifyHistory;
             }
         },
+        methods: {
+            copyText() {
+                let copyEle = document.createElement('textarea');
+                copyEle.value = this.entry.full_short_link;
+                copyEle.style = {opacity: '0'};
+                document.body.appendChild(copyEle);
+                copyEle.select();
+                document.execCommand('copy');
+                document.body.removeChild(copyEle);
+
+                this.$store.dispatch('alert', 'URL copied to clipboard');
+
+                // Copy Animation
+                if(this.timeout) {
+                    clearTimeout(this.copyingTimeout);
+                    this.copyingTimeout = null;
+                    this.copying = false;
+                }
+                this.copying = true;
+                this.copyingTimeout = setTimeout(() => {
+                    this.copying = false;
+                }, 500);
+            }
+        }
     };
 </script>
 
@@ -26,23 +61,37 @@
     @import "../assets/css/variables.scss";
     
     .item {
-        
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 1rem 1rem;
 
+        a {
+            display: block;
+        }
         .short {
             font-size: 1.75rem;
         }
         .original {
             font-size: .75rem;
         }
+        
+        .copy-effect {
+            position: absolute;
+            font-size: 1.75rem;
+            top: 1rem; left: 1rem;
+            pointer-events: none;
+            opacity: 0;
+        }
+        .copy-effect.show {
+            animation: fade-up .5s linear;
+        }
     }
 
-
-    .fade-enter-active, .fade-leave-active {
-    transition: opacity .5s;
-    }
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
+    @keyframes fade-up {
+        0%   {opacity: 1; top: .5rem;}
+        100% {opacity: 0; top: -2rem;}
     }
 
 

@@ -12,7 +12,7 @@
         <ShortifyHistory />
       </section>
     </div>
-    <ErrorAlert />
+    <Alert />
   </div>
 </template>
 
@@ -21,14 +21,14 @@ import {getShortUrl} from "./api/api.shrtco.de.js"
 
 import InputFieldShortifyUrl from './components/InputFieldShortifyUrl.vue'
 import ShortifyHistory from './components/ShortifyHistory.vue'
-import ErrorAlert from './components/ErrorAlert.vue'
+import Alert from './components/Alert.vue'
 
 export default {
   name: 'App',
   components: {
     InputFieldShortifyUrl,
     ShortifyHistory,
-    ErrorAlert
+    Alert
   },
   data() {
       return {

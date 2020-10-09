@@ -13,7 +13,7 @@ export default {
             state.shortifyFormModel.fields[fieldName].value = value;
         },
         pushToHistory: (state, entry) => {
-            state.shortifyHistory.unshift(entry);
+            state.shortifyHistory.push(entry);
         }
     },
     actions: {

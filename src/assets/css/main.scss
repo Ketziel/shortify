@@ -24,6 +24,14 @@ html {
     p {
         font-size: 1.1rem;
     }
+
+    a {
+        color: $colour-secondary;
+        text-decoration: none;
+    }
+    a:hover, a:focus {
+        text-decoration: underline;
+    }
 }
 
 html.fetching {
@@ -53,7 +61,7 @@ html.fetching {
 .button {
     display: inline-block;
     position: relative;
-    background: $colour-secondary;
+    background-color: $colour-secondary;
     color: $colour-mono-light;
     text-align: center;
     text-decoration: none;
@@ -63,11 +71,6 @@ html.fetching {
     
     transition: .25s;
     box-shadow: inset 0em 0 0 0 $colour-highlight, inset 0em 0 0 0 $colour-highlight;
-
-    span {
-        // transition: .25s;
-        // text-shadow: 0rem 0rem 0 #ECD18E, 0rem 0rem 0 #ECD18E;
-    }
 }
 .button.disabled {
     opacity: .75;
@@ -75,8 +78,16 @@ html.fetching {
 }
 .button:hover, .button:focus {
     box-shadow: inset -3.5em 0 0 0 $colour-highlight, inset 3.5em 0 0 0 $colour-highlight;
+    text-decoration: none;
+}
 
-    span {
-        //text-shadow: 0.25rem 0.25rem 0 var(--colour-secondary-light), -0.25rem -0.25rem 0 var(--colour-secondary-light);
-    }
+.button.hollow {
+    background-color: transparent;
+    color: $colour-secondary;
+    border: solid 1px $colour-secondary;
+}
+.button.hollow:hover, .button.hollow:focus {
+    color: $colour-mono-light;
+    box-shadow: inset -3.5em 0 0 0 $colour-highlight, inset 3.5em 0 0 0 $colour-highlight;
+    text-decoration: none;
 }
