@@ -118,6 +118,12 @@ export default {
         text-shadow: .25rem .25rem 0 $colour-tertiary, -.25rem -.25rem 0 $colour-tertiary;
       }
     }
+
+    @media screen and (max-width: 360px) {
+        section.title {
+          padding: .75rem;
+        }
+    }
   
   }
 

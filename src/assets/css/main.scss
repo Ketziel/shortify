@@ -19,6 +19,12 @@ html {
 
     h1 {
         font-size: 4rem;
+        
+    }
+    @media screen and (max-width: 360px) {
+        h1 {
+            font-size: 18vw;
+        }
     }
 
     p {
@@ -77,7 +83,7 @@ html.fetching {
     pointer-events: none;
 }
 .button:hover, .button:focus {
-    box-shadow: inset -3.5em 0 0 0 $colour-highlight, inset 3.5em 0 0 0 $colour-highlight;
+    box-shadow: inset -6em 0 0 0 $colour-highlight, inset 6em 0 0 0 $colour-highlight;
     text-decoration: none;
 }
 
@@ -88,6 +94,6 @@ html.fetching {
 }
 .button.hollow:hover, .button.hollow:focus {
     color: $colour-mono-light;
-    box-shadow: inset -3.5em 0 0 0 $colour-highlight, inset 3.5em 0 0 0 $colour-highlight;
+    box-shadow: inset -6em 0 0 0 $colour-highlight, inset 6em 0 0 0 $colour-highlight;
     text-decoration: none;
 }

@@ -109,6 +109,8 @@
             span {
                 position: absolute;
                 left: 0; right: 0;
+                margin: auto;
+
                 transition: .25s;
                 opacity: 0;
                 transform: scale(0);
@@ -135,6 +137,19 @@
         }
         .copy-effect.show {
             animation: fade-up .5s linear;
+        }
+
+    }
+    @media screen and (max-width: 400px) {
+        .shortify-input {
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .button {
+                height: 1.7rem;
+                margin: .25rem 0 .5rem;
+                width: 8rem;
+            }
         }
     }
 

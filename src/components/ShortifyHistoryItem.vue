@@ -34,7 +34,7 @@
             copyText() {
                 let copyEle = document.createElement('textarea');
                 copyEle.value = this.entry.full_short_link;
-                copyEle.style = {opacity: '0'};
+                copyEle.style.opacity = '0';
                 document.body.appendChild(copyEle);
                 copyEle.select();
                 document.execCommand('copy');
@@ -67,8 +67,9 @@
         align-items: center;
         padding: 1rem 1rem;
 
-        a {
+        a:not(.button) {
             display: block;
+            word-wrap: break-word;
         }
         .short {
             font-size: 1.75rem;
@@ -86,6 +87,27 @@
         }
         .copy-effect.show {
             animation: fade-up .5s linear;
+        }
+    }
+    @media screen and (max-width: 400px) {
+        .item {
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+
+            .button {
+                height: 1.7rem;
+                margin: 1rem 0 .5rem;
+                width: 8rem;
+            }
+            .copy-effect {
+                left: 0; right: 0;
+            }
+        }
+        .item > div {
+            width: 100%;
         }
     }
 
