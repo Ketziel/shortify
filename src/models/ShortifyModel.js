@@ -17,11 +17,5 @@ export default class ShortifyModel extends Model {
             }
         });
 
-        /* 
-            TODO: Talk about this being a bit overkill, but is extendable.
-            Also explain that this creates a devision between html form and data, allowing properties to be easily manipulated in other components
-        */
-
-
     }
 }

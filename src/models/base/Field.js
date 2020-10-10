@@ -12,7 +12,7 @@ export default class Field {
             regex: validation && validation.regex ? validation.regex : null,
             error: null
         };
-        this.errorMsgOverride = errorMsgOverride;
+        this.errorMsgOverride = errorMsgOverride || {};
     }
 
     get hasChanged() {
