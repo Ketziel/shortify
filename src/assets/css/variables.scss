@@ -1,44 +1,56 @@
 
 /* ==========================================================================
+    Fonts
+============================================================================= */
+
+    $font-header: 'Lobster', cursive;
+    $font-body: 'Oswald', sans-serif;
+
+/* ==========================================================================
     Colours
 ============================================================================= */
 
-$colour-primary: #d5b9b2;   
-$colour-secondary: #6d2e46;
-$colour-tertiary: #ece2d0;
-$colour-highlight: #a26769;
+    $colour-primary: #d5b9b2;   
+    $colour-secondary: #6d2e46;
+    $colour-tertiary: #ece2d0;
+    $colour-highlight: #a26769;
 
-$colour-mono-light: #f4f1de;
-$colour-mono-dark: #50514f;
+    $colour-mono-light: #f4f1de;
+    $colour-mono-dark: #50514f;
 
-$colour-error: #8b0000;
+    $colour-error: #8b0000;
+
+
 
 /* 
-    Alternative Colour Schemes 
-    -------------------------
+    Alternative Blue Colour Scheme
+    ------------------------------
 */
 
-// $colour-primary:  #70a0af;   
-// $colour-secondary: #331e38;
-// $colour-tertiary: #f4e8c1;
-// $colour-highlight: #706993;
+    // $colour-primary:  #70a0af;   
+    // $colour-secondary: #331e38;
+    // $colour-tertiary: #f4e8c1;
+    // $colour-highlight: #706993;
 
-// $colour-mono-light: #f4f1de;
-// $colour-mono-dark: #50514f;
+    // $colour-mono-light: #f4f1de;
+    // $colour-mono-dark: #50514f;
 
-// $colour-error: #8b0000;
+    // $colour-error: #8b0000;
 
-/*
--------------------------
+
+    
+/* 
+    Alternative Green Colour Scheme
+    ------------------------------
 */
 
-// $colour-primary:  #88ab81;   
-// $colour-secondary: #44252a;
-// $colour-tertiary: #ecd18e;
-// $colour-highlight: #a26769;
+    // $colour-primary:  #88ab81;   
+    // $colour-secondary: #44252a;
+    // $colour-tertiary: #ecd18e;
+    // $colour-highlight: #a26769;
 
-// $colour-mono-light: #f0eeee;
-// $colour-mono-dark: #353638;
+    // $colour-mono-light: #f0eeee;
+    // $colour-mono-dark: #353638;
 
-// $colour-error: #8b0000;
+    // $colour-error: #8b0000;
 

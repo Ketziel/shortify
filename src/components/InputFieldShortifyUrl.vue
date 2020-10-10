@@ -3,7 +3,7 @@
         
         <div class="shortify-input">
             <div class="copy-effect" :class="{show: copying}">{{field.value}}</div>
-            <input :id="field.name" type="textbox" :attr="inputProps" :disabled="fetching" v-model="field.value" :placeholder="placeholder" @change="this.change" @focus="this.focus" v-on:keyup.enter="button"  v-on:keyup="edit" ref="input" />
+            <input :id="field.name" type="textbox" :disabled="fetching" v-model="field.value" :placeholder="placeholder" @change="this.change" @focus="this.focus" v-on:keyup.enter="button"  v-on:keyup="edit" ref="input" />
             <a href="" class="button" @click.prevent="button" :class="{disabled: fetching}">
                 <span :class="{show: !shortified && !fetching}">Shortify!</span>
                 <span class="spinner-wrap" :class="{show: fetching}"><Spinner/></span>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import Spinner from './Spinner.vue'
+    import Spinner from '@/components/Spinner.vue'
 
     export default {
         name: 'InputFieldShortifyUrl',
@@ -25,7 +25,6 @@
         props: [
             'field',
             'placeholder',
-            'inputProps',
             'shortified',
             'fetching'
         ],
@@ -42,7 +41,7 @@
             button() {
                 this.$emit('onButtonClick', this.field);
                 if (this.shortified) {
-                    //If shortified, copy URL to clipboard.
+                    //If URL is shortified, copy URL to clipboard.
                     this.copyText();
                 }
             },
@@ -52,11 +51,11 @@
             focus() {
                 this.$emit('onFocus', this.field);
                 if(this.shortified) {
-                    //If shortified, auto select url on focus.
+                    //If URL is shortified, auto select url on focus.
                     this.selectInputText();
                 }
             },
-            copyText() {
+            copyText() { //Copies URL to clipboard
                 this.selectInputText();
                 document.execCommand("copy");
                 this.$store.dispatch('alert', 'URL copied to clipboard');

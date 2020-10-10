@@ -1,4 +1,4 @@
-import Model from "./base/Model";
+import Model from "@/models/base/Model";
 
 export default class ShortifyModel extends Model {
     constructor({url} = {}) {

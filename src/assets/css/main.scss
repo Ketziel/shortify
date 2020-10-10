@@ -7,13 +7,13 @@ html {
     background: $colour-primary;
 
     body {
-        font-family: 'Oswald', sans-serif;
+        font-family: $font-body;
         margin: 0;
         color: $colour-mono-dark;
     }
 
     h1, h2, h3, h4, h5, h6 {
-        font-family: 'Lobster', cursive;
+        font-family: $font-header;
         color: $colour-secondary;
     }
 
@@ -44,6 +44,14 @@ html.fetching {
     cursor: progress;
 }
 
+::selection {
+    background: hotpink;
+    color: #fff;
+}
+::-moz-selection {
+    background: hotpink;
+    color: #fff;
+}
 
 /* ==========================================================================
     App Layout Style

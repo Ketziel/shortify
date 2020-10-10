@@ -1,22 +1,15 @@
 export default class Field {
     constructor(name, value, validation, errorMsgOverride) {
         this.name = name;
-        this.initialValue = value;
         this.value = value;
         this.validation = {
             required: validation && !!validation.required,
             length: validation && !isNaN(validation.length) ? validation.length : 0,
-            min: validation && !isNaN(validation.min) ? validation.min : 0,
-            max: validation && !isNaN(validation.max) ? validation.max : 100,
-            step: validation && !isNaN(validation.step) ? validation.step : 1,
             regex: validation && validation.regex ? validation.regex : null,
             error: null
         };
         this.errorMsgOverride = errorMsgOverride || {};
-    }
-
-    get hasChanged() {
-        return this.initialValue !== this.value;
+        this.isValue = true;
     }
 
     validate() {

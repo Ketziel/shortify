@@ -1,4 +1,4 @@
-import ShortifyModel from '../../models/ShortifyModel';
+import ShortifyModel from '@/models/ShortifyModel';
 
 export default {
     state: {
@@ -14,6 +14,9 @@ export default {
         },
         pushToHistory: (state, entry) => {
             state.shortifyHistory.push(entry);
+        },
+        clearHistory: (state) => {
+            state.shortifyHistory = [];
         }
     },
     actions: {
@@ -25,6 +28,9 @@ export default {
         },
         addToHistory: ({commit}, entry) => {
             commit('pushToHistory', entry);
+        },
+        clearHistory: ({commit}) => {
+            commit('clearHistory');
         }
     },
 };

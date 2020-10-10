@@ -1,4 +1,4 @@
-import Field from './Field'
+import Field from '@/models/base/Field'
 
 export default class Model {
     constructor() {
@@ -8,20 +8,6 @@ export default class Model {
 
     addField({name, value, validation, errorMsgOverride}) {
         this.fields[name] = new Field(name, value, validation, errorMsgOverride);
-    }
-
-    get hasChanged() {
-        // const keys = Object.keys(this.fields);
-        // let key;
-        // for (let k in keys) {
-        //     key = keys[k];
-        //     if (this.fields.hasOwnProperty(key)) {
-        //         if (this.fields[key].hasChanged) {
-        //             return true;
-        //         }
-        //     }
-        // }
-        return false;
     }
 
     values() {

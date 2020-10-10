@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import ShortifyHistoryItem from './ShortifyHistoryItem.vue'
+    import ShortifyHistoryItem from '@/components/ShortifyHistoryItem.vue'
 
     export default {
         name: 'ShortifyHistory',

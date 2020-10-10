@@ -3,7 +3,7 @@
     <div class="content-wrapper">
       <section class="title">
         <h1>Shortify</h1>
-        <p>Enter a long url below, and click the button to shorten it. Easy!</p>
+        <p>Enter a long url below, then click the button to shorten it. Easy!</p>
       </section>
       <section>
         <InputFieldShortifyUrl placeholder="Paste a URL" :field="this.shortifyFormModel.fields.url" :shortified="shortified" :fetching="fetching" v-on:onButtonClick="genShortUrl" v-on:onChange="resetErrors" v-on:onEdit="resetShortified"/>
@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import {getShortUrl} from "./api/api.shrtco.de.js"
+import {getShortUrl} from "@/api/api.shrtco.de.js"
 
-import InputFieldShortifyUrl from './components/InputFieldShortifyUrl.vue'
-import ShortifyHistory from './components/ShortifyHistory.vue'
-import Alert from './components/Alert.vue'
+import InputFieldShortifyUrl from '@/components/InputFieldShortifyUrl.vue'
+import ShortifyHistory from '@/components/ShortifyHistory.vue'
+import Alert from '@/components/Alert.vue'
 
 export default {
   name: 'App',
@@ -32,7 +32,7 @@ export default {
   },
   data() {
       return {
-          shortified: false
+          shortified: false //Used to show if URL in box is shortened
       };
   },
   computed: {
@@ -48,14 +48,15 @@ export default {
   },
   methods: {
     genShortUrl(){
-      if (!this.shortified && this.shortifyFormModel.validate()) {
+      if (!this.shortified && this.shortifyFormModel.validate()) { 
+        //if form model is valid, and the url doesn't already look like it's been shortened
         this.$store.dispatch('startFetch');
-        getShortUrl(this.shortifyFormModel.fields.url.value)
+        getShortUrl(this.shortifyFormModel.values()) //API Call
         .then((response) => response.json())
           .then((json) => {
             if (json.ok) {
               const result = json.result;
-              this.$store.dispatch('updateShortifyFormModel', {fieldName: 'url', value: result.full_short_link});
+              this.$store.dispatch('updateShortifyFormModel', {fieldName: 'url', value: result.full_short_link}); //Set model url field value to shortlink (which updates input box)
               this.$store.dispatch('addToHistory', result);
               this.shortified = true;
             } else {
@@ -72,14 +73,14 @@ export default {
     resetErrors() {
       this.shortifyFormModel.clearErrors();
     },
-    resetShortified() {
+    resetShortified() { //Run when inputbox is edited
       if (!this.shortifyFormModel.fields.url.value.includes('shrtco.de')) {
         this.shortified = false;
       }
     }
   },
   watch: {
-    fetching() {
+    fetching() { //Adds fetching class to html which controls cursor
       let html = document.getElementsByTagName('html')[0];
       if (this.fetching) {
         html.classList.add('fetching');
@@ -89,9 +90,6 @@ export default {
     }
   }
 }
-
-
-
 
 </script>
 

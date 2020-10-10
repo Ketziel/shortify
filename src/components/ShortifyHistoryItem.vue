@@ -25,13 +25,8 @@
                 copyingTimeout: null
             };
         },
-        computed: {
-            shortifyFormModel() {
-                return this.$store.state.shortify.shortifyHistory;
-            }
-        },
         methods: {
-            copyText() {
+            copyText() { //Creates temp dom element and uses it to Copy URL to clipboard
                 let copyEle = document.createElement('textarea');
                 copyEle.value = this.entry.full_short_link;
                 copyEle.style.opacity = '0';

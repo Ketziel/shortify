@@ -21,7 +21,7 @@
             }
         },
         watch: {
-            message() {
+            message() { //Reacts to alert message change in store
                 if(this.timeout) {
                     clearTimeout(this.timeout);
                     this.timeout = null;
